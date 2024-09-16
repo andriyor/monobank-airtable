@@ -25,7 +25,7 @@ const transformStatements = (statements: Statement[]) => {
         time: format(date, 'yyyy-MM-dd'),
         description: row.description,
         mcc: row.mcc,
-        amount: Math.round(row.amount / 100),
+        amount: Math.round(Math.abs(row.amount) / 100),
       };
     });
 };
