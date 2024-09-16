@@ -11,8 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "airtable": "^0.11.6",
-    "date-fns": "^2.29.3",
+    "csv-stringify": "^6.5.1",
+    "date-fns": "^3.6.0",
     "dotenv": "^16.0.3",
+    "monobank-api": "github:andriyor/monobank-api",
     "zod": "^3.21.4",
     "zod-fetch": "^0.1.0"
   },
