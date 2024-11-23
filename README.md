@@ -11,6 +11,8 @@ AIRTABLE_KEY="******"
 AIRTABLE_BASE="******"
 ```
 
+When MONO_ACCOUNT not provided it will use default black card.
+
 For mcc used this data [Oleksios/Merchant-Category-Codes: MCC codes dataset in Ukrainian, English and Russian (with groups and without groups)](https://github.com/Oleksios/Merchant-Category-Codes)
 
 ## Examples
@@ -24,7 +26,7 @@ tsx src/index.ts
 export to csv file
 
 ```sh
-tsx src/monobank-csv.ts
+tsx src/monobank-csv.ts --start 2024.11.23 --end 2024.11.24 --file result.csv
 ```
 
 ## API Doc

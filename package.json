@@ -15,6 +15,7 @@
     "date-fns": "^3.6.0",
     "dotenv": "^16.0.3",
     "monobank-api": "github:andriyor/monobank-api",
+    "type-flag": "^3.0.0",
     "zod": "^3.21.4",
     "zod-fetch": "^0.1.0"
   },
