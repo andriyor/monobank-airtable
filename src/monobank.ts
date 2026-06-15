@@ -1,6 +1,9 @@
 import { z } from 'zod';
 import { set } from 'date-fns';
 import { createZodFetcher } from 'zod-fetch';
+import { MonobankApi, Statement } from 'monobank-api';
+
+import { dateRange, delay } from './utils';
 
 const toTimestamp = (strDate: Date) => {
   return parseInt((strDate.getTime() / 1000).toFixed(0));
@@ -50,4 +53,33 @@ export const fetchStatementsByToday = (account: string) => {
     set(new Date(), { hours: 23, minutes: 59, seconds: 59 })
   );
   return fetchStatements(account, startDate, endDate);
+};
+
+// Fetch every statement between two dates. Monobank rate-limits the statement
+// endpoint to one request per 60 seconds, so we wait a minute between windows.
+export const getAllStatements = async ({
+  account,
+  from,
+  to,
+}: {
+  account: string;
+  from: Date;
+  to: Date;
+}) => {
+  const monobankApi = new MonobankApi(process.env.MONO_TOKEN || '');
+  const ranges = dateRange(from, to, 30);
+  const result: Statement[] = [];
+  for (let index = 0; index < ranges.length; index++) {
+    const data = await monobankApi.getStatements({
+      account,
+      from: ranges[index].from,
+      to: ranges[index].to,
+    });
+    result.push(...data.reverse());
+
+    if (ranges.length !== 1 && index !== ranges.length - 1) {
+      await delay(1000 * 60);
+    }
+  }
+  return result;
 };

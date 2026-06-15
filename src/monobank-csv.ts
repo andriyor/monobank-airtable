@@ -7,6 +7,8 @@ import { MonobankApi, Statement } from 'monobank-api';
 import * as dotenv from 'dotenv';
 import { typeFlag } from 'type-flag';
 
+import { getAllStatements } from './monobank';
+
 dotenv.config();
 
 const parsed = typeFlag({
@@ -98,7 +100,7 @@ type Account = {
     const startDate = new Date(parsed.flags.start);
     const endDate = new Date(parsed.flags.end);
 
-    const statements = await monobankApi.getAllStatements({
+    const statements = await getAllStatements({
       account: accountId,
       from: startDate,
       to: endDate,
