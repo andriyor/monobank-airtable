@@ -12,22 +12,23 @@
   "dependencies": {
     "airtable": "^0.11.6",
     "cli-progress": "^3.12.0",
-    "csv-stringify": "^6.5.1",
+    "csv-stringify": "^6.8.0",
     "date-fns": "^3.6.0",
-    "dotenv": "^16.0.3",
+    "dotenv": "^16.6.1",
     "monobank-api": "github:andriyor/monobank-api",
     "type-flag": "^3.0.0",
-    "zod": "^3.21.4",
-    "zod-fetch": "^0.1.0"
+    "zod": "^3.25.76",
+    "zod-fetch": "^0.1.1"
   },
   "devDependencies": {
     "@types/cli-progress": "^3.11.6",
-    "@types/node": "^18.15.10",
-    "@typescript-eslint/eslint-plugin": "^5.57.0",
-    "@typescript-eslint/parser": "^5.57.0",
-    "eslint": "^8.36.0",
-    "prettier": "^2.8.7",
-    "typescript": "^5.0.2",
-    "vitest": "^4.1.8"
-  }
+    "@types/node": "^18.19.130",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "^8.57.1",
+    "prettier": "^2.8.8",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.9"
+  },
+  "packageManager": "pnpm@11.7.0+sha512.19cc852c120c7125760f2443ee6be0ca5b40f9f50598de1a09a1f177503e010e57c23c77646e01e761de59bf874fb22a3398c33ab9691fc13eb946b6f0f4d620"
 }
