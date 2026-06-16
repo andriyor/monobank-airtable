@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { set } from 'date-fns';
 import { createZodFetcher } from 'zod-fetch';
 import { MonobankApi, Statement } from 'monobank-api';
+import * as cliProgress from 'cli-progress';
 
 import { dateRange, delay } from './utils';
 
@@ -69,6 +70,15 @@ export const getAllStatements = async ({
   const monobankApi = new MonobankApi(process.env.MONO_TOKEN || '');
   const ranges = dateRange(from, to, 30);
   const result: Statement[] = [];
+
+  const progressBar = new cliProgress.SingleBar(
+    {
+      format: 'statements [{bar}] {percentage}% | {value}/{total} windows',
+    },
+    cliProgress.Presets.shades_classic
+  );
+  progressBar.start(ranges.length, 0);
+
   for (let index = 0; index < ranges.length; index++) {
     const data = await monobankApi.getStatements({
       account,
@@ -76,10 +86,13 @@ export const getAllStatements = async ({
       to: ranges[index].to,
     });
     result.push(...data.reverse());
+    progressBar.increment();
 
     if (ranges.length !== 1 && index !== ranges.length - 1) {
       await delay(1000 * 60);
     }
   }
+
+  progressBar.stop();
   return result;
 };
